@@ -9,7 +9,7 @@ const colors = require('colors');
 const errorMware = require('./middleware/errorMiddleware');
 
 
-
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("api is running...");
@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
 
 
 app.use('/api/products', require('./routes/productRoutes'));
+app.use('/api/users', require('./routes/userRoutes'));
 
 app.use(errorMware.notFound);
 
