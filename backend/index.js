@@ -8,21 +8,20 @@ const db = require('./config/mongoose');
 const colors = require('colors');
 const errorMware = require('./middleware/errorMiddleware');
 
-
 app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("api is running...");
 });
 
-
-
 app.use('/api/products', require('./routes/productRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/orders', require('./routes/orderRoutes'));
 
-app.use(errorMware.notFound);
 
+app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))
+
+app.use(errorMware.notFound);
 
 app.use(errorMware.notFound);
 
